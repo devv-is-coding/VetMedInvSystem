@@ -9,9 +9,13 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property int $id
+ * @property string|null $fname
+ * @property string|null $lname
  * @property string $username
  * @property string $email
  * @property string $password
+ * @property int $role
+ * @property int|null $has_pic
  * @property bool $is_active
  * @property \Cake\I18n\DateTime $created_on
  * @property \Cake\I18n\DateTime $modified_on
@@ -31,9 +35,13 @@ class User extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
+        'fname' => true,
+        'lname' => true,
         'username' => true,
         'email' => true,
         'password' => true,
+        'role' => true,
+        'has_pic' => true,
         'is_active' => true,
         'created_on' => true,
         'modified_on' => true,
@@ -46,7 +54,6 @@ class User extends Entity
      *
      * @var list<string>
      */
-    // Hash password automatically
     protected function _setPassword(string $password): ?string {
     if (strlen($password) > 0) {
         return password_hash($password, PASSWORD_ARGON2ID);

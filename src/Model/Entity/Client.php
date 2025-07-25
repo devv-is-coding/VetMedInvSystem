@@ -12,13 +12,13 @@ use Cake\ORM\Entity;
  * @property string $fname
  * @property string|null $mname
  * @property string $lname
- * @property int $age
- * @property int $gender
  * @property int $phone_number
- * @property string $email
+ * @property int|null $phone_number2
+ * @property int|null $is_new
+ * @property int|null $is_member
+ * @property int|null $is_vip
  * @property bool $is_active
- * @property \Cake\I18n\DateTime|null $last_visit
- * @property \Cake\I18n\DateTime|null $next_visit
+ * @property int|null $cnd_pts
  * @property \Cake\I18n\DateTime $created_on
  * @property \Cake\I18n\DateTime $modified_on
  * @property \Cake\I18n\DateTime|null $deleted_on
@@ -38,13 +38,13 @@ class Client extends Entity
         'fname' => true,
         'mname' => true,
         'lname' => true,
-        'age' => true,
-        'gender' => true,
         'phone_number' => true,
-        'email' => true,
+        'phone_number2' => true,
+        'is_new' => true,
+        'is_member' => true,
+        'is_vip' => true,
         'is_active' => true,
-        'last_visit' => true,
-        'next_visit' => true,
+        'cnd_pts' => true,
         'created_on' => true,
         'modified_on' => true,
         'deleted_on' => true,

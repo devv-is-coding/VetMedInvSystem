@@ -68,34 +68,28 @@ class ClientsTable extends Table
             ->notEmptyString('lname');
 
         $validator
-            ->integer('age')
-            ->requirePresence('age', 'create')
-            ->notEmptyString('age');
-
-        $validator
-            ->notEmptyString('gender');
-
-        $validator
             ->requirePresence('phone_number', 'create')
             ->notEmptyString('phone_number');
 
         $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->allowEmptyString('phone_number2');
+
+        $validator
+            ->allowEmptyString('is_new');
+
+        $validator
+            ->allowEmptyString('is_member');
+
+        $validator
+            ->allowEmptyString('is_vip');
 
         $validator
             ->boolean('is_active')
             ->notEmptyString('is_active');
 
         $validator
-            ->dateTime('last_visit')
-            ->allowEmptyDateTime('last_visit');
-
-        $validator
-            ->dateTime('next_visit')
-            ->allowEmptyDateTime('next_visit');
+            ->integer('cnd_pts')
+            ->allowEmptyString('cnd_pts');
 
         $validator
             ->dateTime('created_on')
@@ -110,19 +104,5 @@ class ClientsTable extends Table
             ->allowEmptyDateTime('deleted_on');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
-
-        return $rules;
     }
 }

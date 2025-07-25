@@ -33,6 +33,10 @@
             $username = trim(strtolower($data['username'] ?? ''));
             $password = trim($data['password'] ?? '');
             $email    = trim($data['email'] ?? '');
+            $fname    = trim($data['fname'] ?? '');
+            $lname    = trim($data['lname'] ?? '');
+            $role     = isset($data['role']) ? (int)$data['role'] : null;
+            $has_pic  = isset($data['has_pic']) ? (int)$data['has_pic'] : 0;
 
             if (empty($username) || empty($password)) {
                 throw new BadRequestException('Username and password are required.');
@@ -50,6 +54,10 @@
                 'username'   => $username,
                 'password'   => $password,
                 'email'      => $email,
+                'fname'      => $fname,
+                'lname'      => $lname,
+                'role'       => $role,
+                'has_pic'    => $has_pic,
                 'is_active'  => true,
             ]);
 

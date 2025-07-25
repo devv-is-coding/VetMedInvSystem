@@ -46,6 +46,7 @@ class UsersTable extends Table
         $this->hasMany('PersonalTokens', [
             'foreignKey' => 'user_id',
         ]);
+
         $this->addBehavior('Timestamp', [
             'events' => [
                 'Model.beforeSave' => [
@@ -55,7 +56,6 @@ class UsersTable extends Table
             ],
         ]);
     }
-
     /**
      * Default validation rules.
      *
@@ -64,6 +64,16 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+        $validator
+            ->scalar('fname')
+            ->maxLength('fname', 255)
+            ->allowEmptyString('fname');
+
+        $validator
+            ->scalar('lname')
+            ->maxLength('lname', 255)
+            ->allowEmptyString('lname');
+
         $validator
             ->scalar('username')
             ->maxLength('username', 255)
@@ -82,6 +92,13 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
+
+        $validator
+            ->requirePresence('role', 'create')
+            ->notEmptyString('role');
+
+        $validator
+            ->allowEmptyString('has_pic');
 
         $validator
             ->boolean('is_active')
