@@ -80,6 +80,66 @@ $routes->scope('/api', ['prefix' => 'Api'], function (RouteBuilder $builder) {
         'action' => 'delete',
         '_namespace' => 'App\Controller\Api',
     ])->setPass(['id']);
+
+    // Breed routes
+    $builder->connect('/breeds', [
+        'controller' => 'Breeds',
+        'action' => 'index',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/breeds/view/:id', [
+        'controller' => 'Breeds',
+        'action' => 'view',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    $builder->connect('/breeds/add', [
+        'controller' => 'Breeds',
+        'action' => 'add',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/breeds/edit/:id', [
+        'controller' => 'Breeds',
+        'action' => 'edit',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id'])->setPatterns(['id' => '\d+']);
+
+    $builder->connect('/breeds/delete/:id', [
+        'controller' => 'Breeds',
+        'action' => 'delete',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    //Installation
+    $builder->connect('/installations', [
+        'controller' => 'Installation',
+        'action' => 'index',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/installations/view/:id', [
+        'controller' => 'Installation',
+        'action' => 'view',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    $builder->connect('/installations/add', [
+        'controller' => 'Installation',
+        'action' => 'add',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/installations/edit/:id', [
+        'controller' => 'Installation',
+        'action' => 'edit',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id'])->setPatterns(['id' => '\d+']);
+
+    $builder->connect('/installations/delete/:id', [
+        'controller' => 'Installation',
+        'action' => 'delete',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    // Fallback routes for all controllers
     
     $builder->fallbacks(DashedRoute::class);
 });

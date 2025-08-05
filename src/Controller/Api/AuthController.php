@@ -172,8 +172,12 @@
                     'status' => true,
                     'data' => [
                         'id'        => $user->id,
+                        'fname'     => $user->fname,
+                        'lname'     => $user->lname,
                         'username'  => $user->username,
                         'email'     => $user->email ?? null,
+                        'role'      => $user->role,
+                        'has_pic'   => $user->has_pic,
                         'is_active' => $user->is_active,
                     ]
                 ]));

@@ -6,24 +6,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Client Entity
+ * Breed Entity
  *
  * @property int $id
- * @property string $fname
- * @property string|null $mname
- * @property string $lname
- * @property int $phone_number
- * @property int|null $phone_number2
- * @property int|null $is_new
- * @property int|null $is_member
- * @property int|null $is_vip
- * @property bool $is_active
- * @property int|null $cnd_pts
+ * @property string $name
+ * @property int|null $is_active
+ * @property int|null $is_cat
+ * @property int|null $created_by
  * @property \Cake\I18n\DateTime $created_on
  * @property \Cake\I18n\DateTime $modified_on
+ * @property bool|null $is_deleted
+ * @property int|null $deleted_by
  * @property \Cake\I18n\DateTime|null $deleted_on
  */
-class Client extends Entity
+class Breed extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -35,18 +31,14 @@ class Client extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'fname' => true,
-        'mname' => true,
-        'lname' => true,
-        'phone_number' => true,
-        'phone_number2' => true,
-        'is_new' => true,
-        'is_member' => true,
-        'is_vip' => true,
+        'name' => true,
         'is_active' => true,
-        'cnd_pts' => true,
+        'is_cat' => true,
+        'created_by' => true,
         'created_on' => true,
         'modified_on' => true,
+        'is_deleted' => true,
+        'deleted_by' => true,
         'deleted_on' => true,
         'pets' => true,
     ];
