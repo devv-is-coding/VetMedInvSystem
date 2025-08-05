@@ -52,6 +52,17 @@ class PetsTable extends Table
             'foreignKey' => 'breed_id',
             'joinType' => 'INNER',
         ]);
+        $this->hasMany('PetOwners', [
+            'foreignKey' => 'pet_id',
+        ]);
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'created_on' => 'new',
+                    'modified_on' => 'always',
+                ],
+            ],
+        ]);
     }
 
     /**

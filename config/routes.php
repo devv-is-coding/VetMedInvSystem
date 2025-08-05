@@ -139,6 +139,64 @@ $routes->scope('/api', ['prefix' => 'Api'], function (RouteBuilder $builder) {
         '_namespace' => 'App\Controller\Api',
     ])->setPass(['id']);
 
+    //Pet routes
+    $builder->connect('/pets', [
+        'controller' => 'Pet',
+        'action' => 'index',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/pets/view/:id', [
+        'controller' => 'Pet',
+        'action' => 'view',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    $builder->connect('/pets/add', [
+        'controller' => 'Pet',
+        'action' => 'add',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/pets/edit/:id', [
+        'controller' => 'Pet',
+        'action' => 'edit',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id'])->setPatterns(['id' => '\d+']);
+
+    $builder->connect('/pets/delete/:id', [
+        'controller' => 'Pet',
+        'action' => 'delete',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    // PetOwner routes
+    $builder->connect('/pet-owners', [
+        'controller' => 'PetOwner',
+        'action' => 'index',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/pet-owners/view/:id', [
+        'controller' => 'PetOwner',
+        'action' => 'view',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
+    $builder->connect('/pet-owners/add', [
+        'controller' => 'PetOwner',
+        'action' => 'add',
+        '_namespace' => 'App\Controller\Api',
+    ]);
+    $builder->connect('/pet-owners/edit/:id', [
+        'controller' => 'PetOwner',
+        'action' => 'edit',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id'])->setPatterns(['id' => '\d+']);
+
+    $builder->connect('/pet-owners/delete/:id', [
+        'controller' => 'PetOwner',
+        'action' => 'delete',
+        '_namespace' => 'App\Controller\Api',
+    ])->setPass(['id']);
+
     // Fallback routes for all controllers
     
     $builder->fallbacks(DashedRoute::class);

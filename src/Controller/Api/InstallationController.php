@@ -128,6 +128,7 @@ class InstallationController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
             $installation = $this->Installation->patchEntity($installation, $data);
+            $installation->modified_on = new \DateTimeImmutable('now', new \DateTimeZone('Asia/Manila'));
 
             if ($this->Installation->save($installation)) {
                 return $this->jsonResponse([
@@ -164,6 +165,11 @@ class InstallationController extends AppController
 
         try{
             $installation = $this->Installation->get($id);
+            $installation->deleted_on = new \DateTimeImmutable('now', new \DateTimeZone('Asia/Manila'));
+            
+            if ($installation->deleted_on) {
+                $installation->is_deleted = true;
+            }
             if ($this->Installation->save($installation)) {
                 return $this->jsonResponse([
                     'status' => true,

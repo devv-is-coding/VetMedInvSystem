@@ -55,5 +55,6 @@ class Pet extends Entity
         'deleted_on' => true,
         'client' => true,
         'breed' => true,
+        'pet_owners' => true,
     ];
 }

@@ -49,7 +49,7 @@ class BreedsTable extends Table
                 ],
             ],
         ]);
-          $this->hasMany('Pets', [
+        $this->hasMany('Pets', [
             'foreignKey' => 'breed_id',
         ]);
     }
