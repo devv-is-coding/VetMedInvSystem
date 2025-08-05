@@ -52,7 +52,11 @@ class PetsTable extends Table
             'foreignKey' => 'breed_id',
             'joinType' => 'INNER',
         ]);
+        
         $this->hasMany('PetOwners', [
+            'foreignKey' => 'pet_id',
+        ]);
+        $this->hasMany('PetRecords', [
             'foreignKey' => 'pet_id',
         ]);
         $this->addBehavior('Timestamp', [
