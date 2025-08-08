@@ -7,6 +7,13 @@ use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Entity\User;
+use Cake\Utility\Security;
+
+/**
+ * Users Model
+ *
+ * @property \App\Model\Table\PersonalTokensTable&\Cake\ORM\
 
 /**
  * PersonalTokens Model
@@ -88,4 +95,34 @@ class PersonalTokensTable extends Table
 
         return $rules;
     }
+
+    public function generateTokenForUser(User $user): string
+    {
+        $plainToken = bin2hex(Security::randomBytes(32));
+        $hashedToken = hash('sha256', $plainToken);
+
+        $token = $this->newEntity([
+            'user_id'    => $user->id,
+            'token'      => $hashedToken,
+            'expires_at' => (new \DateTimeImmutable())->modify('+2 days')
+        ]);
+
+        $this->saveOrFail($token);
+
+        return $plainToken;
+    }
+
+    public function revokeToken(string $plainToken, int $userId): void
+    {
+        $hashedToken = hash('sha256', $plainToken);
+
+        $token = $this->find()
+            ->where(['user_id' => $userId, 'token' => $hashedToken])
+            ->first();
+
+        if ($token) {
+            $this->delete($token);
+        }
+    }
+
 }
