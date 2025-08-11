@@ -12,7 +12,7 @@
     class AuthController extends AppController
     {
         protected UsersTable $Users;
-        protected PersonalTokensTable $Tokens;
+        protected PersonalTokensTable $Tokens;  
 
         public function initialize(): void 
         {
